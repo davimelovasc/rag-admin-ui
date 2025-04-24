@@ -28,10 +28,10 @@ RUN npm ci --only=production
 COPY --from=builder /app ./
 
 # Expondo a porta 80
-EXPOSE 80
+EXPOSE 3000
 
 # Sobrescrevendo a porta padrão com a variável de ambiente PORT
-ENV PORT=80
+#ENV PORT=80
 
 # Variáveis de ambiente serão passadas na hora de rodar o container
 
