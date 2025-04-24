@@ -6,13 +6,13 @@ import { FileItem } from './types/file';
 
 const App: React.FC = () => {
   const [files, setFiles] = useState<FileItem[]>([]);
-  if(!process.env.LIST_DOCUMENT_WEBHOOK || !process.env.LIST_DOCUMENT_WEBHOOK || !process.env.DELETE_DOCUMENT_BASE_WEBHOOK) {
+  if(!process.env.NEXT_PUBLIC_LIST_DOCUMENT_WEBHOOK || !process.env.NEXT_PUBLIC_UPLOAD_DOCUMENT_WEBHOOK || !process.env.NEXT_PUBLIC_DELETE_DOCUMENT_BASE_WEBHOOK) {
     console.error("missing env vars")
   }
 
   const fetchFiles = async () => {
     try {
-      const response = await fetch(process.env.LIST_DOCUMENT_WEBHOOK!);
+      const response = await fetch(process.env.NEXT_PUBLIC_LIST_DOCUMENT_WEBHOOK!);
       const data = await response.json();
       console.log(data);
 
@@ -30,7 +30,7 @@ const App: React.FC = () => {
   const deleteFile = async (id: string) => {
     try {
       await fetch(
-        `${process.env.DELETE_DOCUMENT_BASE_WEBHOOK}/${id}`,
+        `${process.env.NEXT_PUBLIC_DELETE_DOCUMENT_BASE_WEBHOOK}/${id}`,
         { method: 'POST' }
       );
       await fetchFiles();

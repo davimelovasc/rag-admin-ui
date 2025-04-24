@@ -25,7 +25,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
     formData.append('data', file);
 
     try {
-      await fetch(process.env.UPLOAD_DOCUMENT_WEBHOOK || "", {
+      await fetch(process.env.NEXT_PUBLIC_UPLOAD_DOCUMENT_WEBHOOK || "", {
         method: 'POST',
         body: formData,
       });
