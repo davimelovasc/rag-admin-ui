@@ -25,10 +25,7 @@ COPY --from=builder /app/package.json /app/package-lock.json ./
 RUN npm ci --only=production
 
 # Copia os arquivos necessários para rodar a aplicação
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/next.config.js ./next.config.js
-COPY --from=builder /app/tsconfig.json ./tsconfig.json
+COPY --from=builder /app ./
 
 # Expondo a porta 80
 EXPOSE 80

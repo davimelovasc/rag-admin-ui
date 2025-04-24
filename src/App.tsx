@@ -6,11 +6,15 @@ import { FileItem } from './types/file';
 
 const App: React.FC = () => {
   const [files, setFiles] = useState<FileItem[]>([]);
+  if(!process.env.LIST_DOCUMENT_WEBHOOK || !process.env.LIST_DOCUMENT_WEBHOOK || !process.env.DELETE_DOCUMENT_BASE_WEBHOOK) {
+    console.error("missing env vars")
+  }
 
   const fetchFiles = async () => {
     try {
-      const response = await fetch(process.env.LIST_DOCUMENT_WEBHOOK || "");
+      const response = await fetch(process.env.LIST_DOCUMENT_WEBHOOK!);
       const data = await response.json();
+      console.log(data);
 
       const validFiles = Array.isArray(data)
         ? data.filter((file) => file && file.id && file.size)
